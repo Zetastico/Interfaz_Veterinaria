@@ -20,6 +20,7 @@ namespace InterfazVeterinaria {
 	public:
 
 		cola_veterinaria^ cola_clientes = gcnew(cola_veterinaria);
+		pila_veterinaria^ pila_clientes = gcnew(pila_veterinaria);
 
 		MyForm(void)
 		{
@@ -46,13 +47,15 @@ namespace InterfazVeterinaria {
 	private: System::Windows::Forms::Panel^ panel2;
 	private: System::Windows::Forms::Panel^ panel3;
 	private: System::Windows::Forms::DateTimePicker^ dateTimeFecha;
-	private: System::Windows::Forms::Label^ Titulo;
+	private: System::Windows::Forms::Label^ IblTitulo;
+
 	private: System::Windows::Forms::Panel^ panel4;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ Agregar;
+	private: System::Windows::Forms::Panel^ Panel_Cola;
 
 
-	private: System::Windows::Forms::Panel^ panel5;
+
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
@@ -76,6 +79,22 @@ namespace InterfazVeterinaria {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Hora_Llegada;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Cant_Mascotas;
 	private: System::Windows::Forms::Button^ Eliminar;
+	private: System::Windows::Forms::Button^ btnDehacer;
+	private: System::Windows::Forms::Button^ btnAtender;
+	private: System::Windows::Forms::Panel^ Panel_Atención;
+	private: System::Windows::Forms::TextBox^ txtCCantMascotas;
+
+	private: System::Windows::Forms::TextBox^ txtCHora;
+
+	private: System::Windows::Forms::TextBox^ txtCContacto;
+
+	private: System::Windows::Forms::TextBox^ txtCDueño;
+
+	private: System::Windows::Forms::Label^ label11;
+	private: System::Windows::Forms::Label^ label10;
+	private: System::Windows::Forms::Label^ label9;
+	private: System::Windows::Forms::Label^ label8;
+
 
 
 
@@ -103,6 +122,17 @@ namespace InterfazVeterinaria {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
+			this->Panel_Atención = (gcnew System::Windows::Forms::Panel());
+			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->txtCCantMascotas = (gcnew System::Windows::Forms::TextBox());
+			this->txtCHora = (gcnew System::Windows::Forms::TextBox());
+			this->txtCContacto = (gcnew System::Windows::Forms::TextBox());
+			this->txtCDueño = (gcnew System::Windows::Forms::TextBox());
+			this->btnDehacer = (gcnew System::Windows::Forms::Button());
+			this->btnAtender = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Info_Contacto = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -110,10 +140,11 @@ namespace InterfazVeterinaria {
 			this->Cant_Mascotas = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->panel4 = (gcnew System::Windows::Forms::Panel());
+			this->Eliminar = (gcnew System::Windows::Forms::Button());
 			this->Ocultar = (gcnew System::Windows::Forms::Button());
 			this->Limpiar = (gcnew System::Windows::Forms::Button());
 			this->Agregar = (gcnew System::Windows::Forms::Button());
-			this->panel5 = (gcnew System::Windows::Forms::Panel());
+			this->Panel_Cola = (gcnew System::Windows::Forms::Panel());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
@@ -125,14 +156,14 @@ namespace InterfazVeterinaria {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->Titulo = (gcnew System::Windows::Forms::Label());
+			this->IblTitulo = (gcnew System::Windows::Forms::Label());
 			this->dateTimeFecha = (gcnew System::Windows::Forms::DateTimePicker());
-			this->Eliminar = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
+			this->Panel_Atención->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->panel4->SuspendLayout();
-			this->panel5->SuspendLayout();
+			this->Panel_Cola->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
 			this->panel3->SuspendLayout();
 			this->SuspendLayout();
@@ -144,15 +175,15 @@ namespace InterfazVeterinaria {
 			this->panel1->Dock = System::Windows::Forms::DockStyle::Left;
 			this->panel1->Location = System::Drawing::Point(0, 0);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(156, 480);
+			this->panel1->Size = System::Drawing::Size(156, 371);
 			this->panel1->TabIndex = 0;
 			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel1_Paint);
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(12, 107);
+			this->button2->Location = System::Drawing::Point(12, 118);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(127, 50);
+			this->button2->Size = System::Drawing::Size(127, 54);
 			this->button2->TabIndex = 1;
 			this->button2->Text = L"Atención en consulta";
 			this->button2->UseVisualStyleBackColor = true;
@@ -170,6 +201,9 @@ namespace InterfazVeterinaria {
 			// 
 			// panel2
 			// 
+			this->panel2->Controls->Add(this->Panel_Atención);
+			this->panel2->Controls->Add(this->btnDehacer);
+			this->panel2->Controls->Add(this->btnAtender);
 			this->panel2->Controls->Add(this->dataGridView1);
 			this->panel2->Controls->Add(this->label7);
 			this->panel2->Controls->Add(this->panel4);
@@ -177,8 +211,111 @@ namespace InterfazVeterinaria {
 			this->panel2->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->panel2->Location = System::Drawing::Point(156, 0);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(864, 480);
+			this->panel2->Size = System::Drawing::Size(864, 371);
 			this->panel2->TabIndex = 1;
+			this->panel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel2_Paint);
+			// 
+			// Panel_Atención
+			// 
+			this->Panel_Atención->Controls->Add(this->label11);
+			this->Panel_Atención->Controls->Add(this->label10);
+			this->Panel_Atención->Controls->Add(this->label9);
+			this->Panel_Atención->Controls->Add(this->label8);
+			this->Panel_Atención->Controls->Add(this->txtCCantMascotas);
+			this->Panel_Atención->Controls->Add(this->txtCHora);
+			this->Panel_Atención->Controls->Add(this->txtCContacto);
+			this->Panel_Atención->Controls->Add(this->txtCDueño);
+			this->Panel_Atención->Location = System::Drawing::Point(20, 65);
+			this->Panel_Atención->Name = L"Panel_Atención";
+			this->Panel_Atención->Size = System::Drawing::Size(372, 248);
+			this->Panel_Atención->TabIndex = 6;
+			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Location = System::Drawing::Point(37, 190);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(110, 13);
+			this->label11->TabIndex = 7;
+			this->label11->Text = L"Numero De Mascotas";
+			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(37, 136);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(86, 13);
+			this->label10->TabIndex = 6;
+			this->label10->Text = L"Hora de Llegada";
+			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Location = System::Drawing::Point(37, 79);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(125, 13);
+			this->label9->TabIndex = 5;
+			this->label9->Text = L"Información De Contacto";
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(37, 21);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(39, 13);
+			this->label8->TabIndex = 4;
+			this->label8->Text = L"Dueño";
+			// 
+			// txtCCantMascotas
+			// 
+			this->txtCCantMascotas->Location = System::Drawing::Point(34, 206);
+			this->txtCCantMascotas->Name = L"txtCCantMascotas";
+			this->txtCCantMascotas->Size = System::Drawing::Size(193, 20);
+			this->txtCCantMascotas->TabIndex = 3;
+			this->txtCCantMascotas->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox6_TextChanged);
+			// 
+			// txtCHora
+			// 
+			this->txtCHora->Location = System::Drawing::Point(34, 152);
+			this->txtCHora->Name = L"txtCHora";
+			this->txtCHora->Size = System::Drawing::Size(193, 20);
+			this->txtCHora->TabIndex = 2;
+			this->txtCHora->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox5_TextChanged);
+			// 
+			// txtCContacto
+			// 
+			this->txtCContacto->Location = System::Drawing::Point(34, 95);
+			this->txtCContacto->Name = L"txtCContacto";
+			this->txtCContacto->Size = System::Drawing::Size(193, 20);
+			this->txtCContacto->TabIndex = 1;
+			this->txtCContacto->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox4_TextChanged);
+			// 
+			// txtCDueño
+			// 
+			this->txtCDueño->Location = System::Drawing::Point(34, 37);
+			this->txtCDueño->Name = L"txtCDueño";
+			this->txtCDueño->Size = System::Drawing::Size(193, 20);
+			this->txtCDueño->TabIndex = 0;
+			// 
+			// btnDehacer
+			// 
+			this->btnDehacer->Location = System::Drawing::Point(681, 290);
+			this->btnDehacer->Name = L"btnDehacer";
+			this->btnDehacer->Size = System::Drawing::Size(132, 23);
+			this->btnDehacer->TabIndex = 5;
+			this->btnDehacer->Text = L"Deshacer Atención";
+			this->btnDehacer->UseVisualStyleBackColor = true;
+			this->btnDehacer->Click += gcnew System::EventHandler(this, &MyForm::btnDehacer_Click);
+			// 
+			// btnAtender
+			// 
+			this->btnAtender->Location = System::Drawing::Point(450, 290);
+			this->btnAtender->Name = L"btnAtender";
+			this->btnAtender->Size = System::Drawing::Size(132, 23);
+			this->btnAtender->TabIndex = 4;
+			this->btnAtender->Text = L"Atender";
+			this->btnAtender->UseVisualStyleBackColor = true;
+			this->btnAtender->Click += gcnew System::EventHandler(this, &MyForm::btnAtender_Click);
 			// 
 			// dataGridView1
 			// 
@@ -231,11 +368,21 @@ namespace InterfazVeterinaria {
 			this->panel4->Controls->Add(this->Ocultar);
 			this->panel4->Controls->Add(this->Limpiar);
 			this->panel4->Controls->Add(this->Agregar);
-			this->panel4->Controls->Add(this->panel5);
+			this->panel4->Controls->Add(this->Panel_Cola);
 			this->panel4->Location = System::Drawing::Point(20, 65);
 			this->panel4->Name = L"panel4";
 			this->panel4->Size = System::Drawing::Size(372, 219);
 			this->panel4->TabIndex = 1;
+			// 
+			// Eliminar
+			// 
+			this->Eliminar->Location = System::Drawing::Point(251, 69);
+			this->Eliminar->Name = L"Eliminar";
+			this->Eliminar->Size = System::Drawing::Size(102, 23);
+			this->Eliminar->TabIndex = 10;
+			this->Eliminar->Text = L"Eliminar";
+			this->Eliminar->UseVisualStyleBackColor = true;
+			this->Eliminar->Click += gcnew System::EventHandler(this, &MyForm::Eliminar_Click);
 			// 
 			// Ocultar
 			// 
@@ -266,21 +413,21 @@ namespace InterfazVeterinaria {
 			this->Agregar->UseVisualStyleBackColor = true;
 			this->Agregar->Click += gcnew System::EventHandler(this, &MyForm::Agregar_Click);
 			// 
-			// panel5
+			// Panel_Cola
 			// 
-			this->panel5->Controls->Add(this->label2);
-			this->panel5->Controls->Add(this->numericUpDown1);
-			this->panel5->Controls->Add(this->textBox2);
-			this->panel5->Controls->Add(this->label5);
-			this->panel5->Controls->Add(this->textBox1);
-			this->panel5->Controls->Add(this->dateTimePicker1);
-			this->panel5->Controls->Add(this->label4);
-			this->panel5->Controls->Add(this->label1);
-			this->panel5->Controls->Add(this->label3);
-			this->panel5->Location = System::Drawing::Point(23, 16);
-			this->panel5->Name = L"panel5";
-			this->panel5->Size = System::Drawing::Size(207, 184);
-			this->panel5->TabIndex = 1;
+			this->Panel_Cola->Controls->Add(this->label2);
+			this->Panel_Cola->Controls->Add(this->numericUpDown1);
+			this->Panel_Cola->Controls->Add(this->textBox2);
+			this->Panel_Cola->Controls->Add(this->label5);
+			this->Panel_Cola->Controls->Add(this->textBox1);
+			this->Panel_Cola->Controls->Add(this->dateTimePicker1);
+			this->Panel_Cola->Controls->Add(this->label4);
+			this->Panel_Cola->Controls->Add(this->label1);
+			this->Panel_Cola->Controls->Add(this->label3);
+			this->Panel_Cola->Location = System::Drawing::Point(23, 16);
+			this->Panel_Cola->Name = L"Panel_Cola";
+			this->Panel_Cola->Size = System::Drawing::Size(207, 184);
+			this->Panel_Cola->TabIndex = 1;
 			// 
 			// label2
 			// 
@@ -362,7 +509,7 @@ namespace InterfazVeterinaria {
 			// panel3
 			// 
 			this->panel3->Controls->Add(this->label6);
-			this->panel3->Controls->Add(this->Titulo);
+			this->panel3->Controls->Add(this->IblTitulo);
 			this->panel3->Controls->Add(this->dateTimeFecha);
 			this->panel3->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel3->Location = System::Drawing::Point(0, 0);
@@ -380,17 +527,17 @@ namespace InterfazVeterinaria {
 			this->label6->Text = L"Fecha";
 			this->label6->Click += gcnew System::EventHandler(this, &MyForm::label6_Click);
 			// 
-			// Titulo
+			// IblTitulo
 			// 
-			this->Titulo->AutoSize = true;
-			this->Titulo->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->IblTitulo->AutoSize = true;
+			this->IblTitulo->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->Titulo->Location = System::Drawing::Point(38, 12);
-			this->Titulo->Name = L"Titulo";
-			this->Titulo->Size = System::Drawing::Size(65, 26);
-			this->Titulo->TabIndex = 1;
-			this->Titulo->Text = L"COLA";
-			this->Titulo->Click += gcnew System::EventHandler(this, &MyForm::COLA_Click);
+			this->IblTitulo->Location = System::Drawing::Point(38, 12);
+			this->IblTitulo->Name = L"IblTitulo";
+			this->IblTitulo->Size = System::Drawing::Size(65, 26);
+			this->IblTitulo->TabIndex = 1;
+			this->IblTitulo->Text = L"COLA";
+			this->IblTitulo->Click += gcnew System::EventHandler(this, &MyForm::COLA_Click);
 			// 
 			// dateTimeFecha
 			// 
@@ -400,21 +547,11 @@ namespace InterfazVeterinaria {
 			this->dateTimeFecha->Size = System::Drawing::Size(123, 20);
 			this->dateTimeFecha->TabIndex = 0;
 			// 
-			// Eliminar
-			// 
-			this->Eliminar->Location = System::Drawing::Point(251, 69);
-			this->Eliminar->Name = L"Eliminar";
-			this->Eliminar->Size = System::Drawing::Size(102, 23);
-			this->Eliminar->TabIndex = 10;
-			this->Eliminar->Text = L"Eliminar";
-			this->Eliminar->UseVisualStyleBackColor = true;
-			this->Eliminar->Click += gcnew System::EventHandler(this, &MyForm::Eliminar_Click);
-			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1020, 480);
+			this->ClientSize = System::Drawing::Size(1020, 371);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
 			this->Name = L"MyForm";
@@ -423,10 +560,12 @@ namespace InterfazVeterinaria {
 			this->panel1->ResumeLayout(false);
 			this->panel2->ResumeLayout(false);
 			this->panel2->PerformLayout();
+			this->Panel_Atención->ResumeLayout(false);
+			this->Panel_Atención->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->panel4->ResumeLayout(false);
-			this->panel5->ResumeLayout(false);
-			this->panel5->PerformLayout();
+			this->Panel_Cola->ResumeLayout(false);
+			this->Panel_Cola->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->EndInit();
 			this->panel3->ResumeLayout(false);
 			this->panel3->PerformLayout();
@@ -441,8 +580,18 @@ namespace InterfazVeterinaria {
 	private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
 	private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+		Panel_Cola->Visible = true;
+		Panel_Atención->Visible = false;
+		IblTitulo->Text = "COLA";
+		btnAtender->Visible = false;
+		btnDehacer->Visible = false;
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	Panel_Cola->Visible = false;
+	Panel_Atención->Visible = true;
+	IblTitulo->Text = "ATENCION A CLIENTE";
+	btnAtender->Visible = true;
+	btnDehacer->Visible = true;
 }
 private: System::Void COLA_Click(System::Object^ sender, System::EventArgs^ e) {
 }
@@ -491,5 +640,57 @@ private: System::Void Eliminar_Click(System::Object^ sender, System::EventArgs^ 
 		}
 	}
 }
+private: System::Void textBox4_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox5_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox6_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void btnAtender_Click(System::Object^ sender, System::EventArgs^ e) {
+	clear_atencion();
+	datos^ primero;
+	// Sacando de la cola, para atender
+	primero = cola_clientes->EliminarInicio();
+	//Elimina de la tabla visual
+	if (dataGridView1->Rows->Count > 0) {
+		pila_clientes->Agregar(primero); // agrega a la pila, el elemento eliminado de la cola
+		// Accede a la primera fila del DataGgrid
+		DataGridViewRow^ fila = dataGridView1->Rows[0];
+		// Guarda los valores en los TextBox
+		txtCDueño->Text = fila->Cells[0]->Value != nullptr ? fila->Cells[0]->Value->ToString() : "";
+		txtCContacto->Text = fila->Cells[1]->Value != nullptr ? fila->Cells[1]->Value->ToString() : "";
+		txtCHora->Text = fila->Cells[2]->Value != nullptr ? fila->Cells[2]->Value->ToString() : "";
+		txtCCantMascotas->Text = fila->Cells[3]->Value != nullptr ? fila->Cells[3]->Value->ToString() : "";
+		// Elimina la fila del grid
+		dataGridView1->Rows->RemoveAt(0);
+		// Opcional: seleccionar la nueva primera fila si existe
+		if (dataGridView1->Rows->Count > 0) {
+			dataGridView1->ClearSelection();
+			dataGridView1->Rows[0]->Selected = true;
+		}
+	}
+
+}
+private: System::Void panel2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void btnDehacer_Click(System::Object^ sender, System::EventArgs^ e) {
+	datos^ primero;
+	primero = pila_clientes->Eliminar(); //se Saca de la pila
+	if (primero != nullptr) {
+		cola_clientes->AgregarInicio(primero);//Se vuelve a poner a la cola
+		//Ahora hay que adicionarlo al Grid
+		dataGridView1->Rows->Insert(0, primero->getNombre(), primero->getContacto(), primero->getHora_llegada(), primero->getcantmascotas());
+		dataGridView1->SelectionMode = DataGridViewSelectionMode::FullRowSelect;
+		dataGridView1->CurrentCell = dataGridView1->Rows[0]->Cells[0];
+		clear_atencion();
+	}
+}
+	   void clear_atencion() {
+		   txtCDueño->Text = " ";
+		   txtCContacto->Text = " ";
+		   txtCHora->Text = " ";
+		   txtCCantMascotas->Text = " ";
+	   }
+
 };
 }
