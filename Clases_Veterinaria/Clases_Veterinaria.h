@@ -83,5 +83,99 @@ namespace ClasesVeterinaria {
 			return pila->Count;
 		}
 	};
+	public ref class datos_atencion {
+	private:
+		DateTime fechaAtencion;
+		double costo;
+		bool pagado;
+		datos^ dueno;
 
+	public:
+		datos_atencion(DateTime fechaAtencion, double costo, bool pagado, datos^ dueno) {
+			this->fechaAtencion = fechaAtencion;
+			this->costo = costo;
+			this->pagado = pagado;
+			this->dueno = dueno;
+		}
+
+		datos^ getdueno() { return dueno; }
+		DateTime getfechaAtencion() { return fechaAtencion; }
+		double getcosto() { return costo; }
+		bool getpagado() { return pagado; }
+
+		void setdueno(datos^ _dueno) { dueno = _dueno; }
+		void setfechaAtencion(DateTime _fechaAtencion) { fechaAtencion = _fechaAtencion; }
+		void setcosto(int _costo) { costo = _costo; }
+		void setpagado(bool _pagado) { pagado = _pagado; }
+	};
+
+	public ref class lista_Atencion_veterinaria {
+	private:
+		List<datos_atencion^>^ Lista;
+
+	public:
+		lista_Atencion_veterinaria() {
+			Lista = gcnew List<datos_atencion^>();
+		}
+
+		void Agregar(datos_atencion^ c) {
+			Lista->Add(c);
+		}
+
+		datos_atencion^ Primero() {
+			if (Lista->Count > 0)
+				return Lista[0];
+			else
+				return nullptr;
+		}
+
+		datos_atencion^ Ultimo() {
+			if (Lista->Count > 0)
+				return Lista[Lista->Count - 1];
+			else
+				return nullptr;
+		}
+
+		datos_atencion^ Anterior(String^ nombreBuscado) {
+			for (int i = 0; i < Lista->Count; i++) {
+				if (Lista[i]->getdueno()->getNombre()->Equals(nombreBuscado, StringComparison::InvariantCultureIgnoreCase)) {
+					if (i > 0)
+						return Lista[i - 1];
+					else
+						return nullptr;
+				}
+			}
+			return nullptr;
+		}
+
+		datos_atencion^ Siguiente(String^ nombreBuscado) {
+			for (int i = 0; i < Lista->Count; i++) {
+				if (Lista[i]->getdueno()->getNombre()->Equals(nombreBuscado, StringComparison::InvariantCultureIgnoreCase)) {
+					if (i < Lista->Count - 1)
+						return Lista[i + 1];
+					else
+						return nullptr;
+				}
+			}
+			return nullptr;
+		}
+
+		bool Eliminar(String^ nombreBuscado) {
+			for (int i = 0; i < Lista->Count; i++) {
+				if (Lista[i]->getdueno()->getNombre()->Equals(nombreBuscado, StringComparison::InvariantCultureIgnoreCase)) {
+					Lista->RemoveAt(i);
+					return true;
+				}
+			}
+			return false;
+		}
+
+		int ObtenerCantidad() {
+			return Lista->Count;
+		}
+
+		List<datos_atencion^>^ ObtenerLista() {
+			return Lista;
+		}
+	};
 }
