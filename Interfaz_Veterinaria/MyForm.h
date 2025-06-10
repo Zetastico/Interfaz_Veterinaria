@@ -241,8 +241,8 @@ namespace InterfazVeterinaria {
 			this->panel2->Controls->Add(this->dataGridView1);
 			this->panel2->Controls->Add(this->label7);
 			this->panel2->Controls->Add(this->panel3);
-			this->panel2->Controls->Add(this->Panel_Atención);
 			this->panel2->Controls->Add(this->panel4);
+			this->panel2->Controls->Add(this->Panel_Atención);
 			this->panel2->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->panel2->Location = System::Drawing::Point(156, 0);
 			this->panel2->Name = L"panel2";
@@ -355,6 +355,7 @@ namespace InterfazVeterinaria {
 			this->dateTimeFecha->Name = L"dateTimeFecha";
 			this->dateTimeFecha->Size = System::Drawing::Size(123, 20);
 			this->dateTimeFecha->TabIndex = 0;
+			this->dateTimeFecha->ValueChanged += gcnew System::EventHandler(this, &MyForm::dateTimeFecha_ValueChanged);
 			// 
 			// Panel_Atención
 			// 
@@ -480,6 +481,7 @@ namespace InterfazVeterinaria {
 			this->txtATotal->Name = L"txtATotal";
 			this->txtATotal->Size = System::Drawing::Size(68, 20);
 			this->txtATotal->TabIndex = 9;
+			this->txtATotal->TextChanged += gcnew System::EventHandler(this, &MyForm::txtATotal_TextChanged);
 			// 
 			// label12
 			// 
@@ -566,8 +568,9 @@ namespace InterfazVeterinaria {
 			this->panel4->Controls->Add(this->Panel_Cola);
 			this->panel4->Location = System::Drawing::Point(20, 65);
 			this->panel4->Name = L"panel4";
-			this->panel4->Size = System::Drawing::Size(372, 265);
+			this->panel4->Size = System::Drawing::Size(372, 294);
 			this->panel4->TabIndex = 1;
+			this->panel4->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel4_Paint);
 			// 
 			// Eliminar
 			// 
@@ -736,14 +739,14 @@ namespace InterfazVeterinaria {
 	private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
 	private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
-		Panel_Cola->Visible = true;
+		panel4->Visible = true;
 		Panel_Atención->Visible = false;
 		IblTitulo->Text = "COLA";
 		btnAtender->Visible = false;
 		btnDehacer->Visible = false;
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		Panel_Cola->Visible = false;
+		panel4->Visible = false;
 		Panel_Atención->Visible = true;
 		IblTitulo->Text = "ATENCION A CLIENTE";
 		btnAtender->Visible = true;
@@ -949,5 +952,11 @@ namespace InterfazVeterinaria {
 			MessageBox::Show("No se encontró ese nombre", "Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 		}
 	}
-	};
+	private: System::Void txtATotal_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+private: System::Void dateTimeFecha_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void panel4_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+};
 }
